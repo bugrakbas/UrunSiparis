@@ -60,6 +60,7 @@ namespace UrunSiparis.Controllers
             {
                 _context.Add(urunSiparisModel);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Öğe başarıyla eklendi!";
                 return RedirectToAction(nameof(Index));
             }
             return View(urunSiparisModel);
@@ -99,6 +100,7 @@ namespace UrunSiparis.Controllers
                 {
                     _context.Update(urunSiparisModel);
                     await _context.SaveChangesAsync();
+                    TempData["Success"] = "Öğe başarıyla güncellendi!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,6 +144,7 @@ namespace UrunSiparis.Controllers
             var urunSiparisModel = await _context.UrunSiparisModel.FindAsync(id);
             _context.UrunSiparisModel.Remove(urunSiparisModel);
             await _context.SaveChangesAsync();
+            TempData["Success"] = "Öğe başarıyla silindi!";
             return RedirectToAction(nameof(Index));
         }
 
